@@ -1,0 +1,70 @@
+html(ng-app='app')
+  head
+    block stylesheet
+        link(href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css', rel='stylesheet')
+        link(href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css', rel='stylesheet')
+        link(href='/assets/css/style.css', rel='stylesheet')
+        link(href='/assets/css/layout.css', rel='stylesheet')
+        link(href='/assets/css/sweetalert.css', rel='stylesheet')
+        link(href='/assets/css/bootstrap-datepicker3.css', rel='stylesheet')
+        //link(href='/assets/css/materialize.css', rel='stylesheet')
+    
+  body
+    div.container
+      nav.navbar.navbar-default.bg-blue
+        .container-fluid
+            .navbar-header
+              a.navbar-brand(href='#') 
+                img.img-responsive(alt='Inmobilia.com', style='width:75%', src='http://assets.inmobilia.com/images/logoInmobilia.png')
+            |     
+            div
+              ul.nav.navbar-nav.navbar-left
+                li
+                  a(href='#properties') Properties
+                |         
+                li
+                  a(href='/developers') Developers
+                |         
+                li
+                  a(href='/services') Services
+                |         
+                li
+                  a(href='/inventory') Inventory
+                |         
+                li
+                  a(href='/advertising') Advertising  
+      div
+        block content
+      
+     block modals
+     
+     div.jumbotron.bg-blue
+       footer.page-footer
+        .container
+            .row  
+          .footer-copyright
+            .container
+              | &copy; 2015 Inmobilia Costa Rica
+        
+    block script
+        script(type='text/javascript', src='https://code.jquery.com/jquery-2.1.1.min.js')  |  
+        script(type='text/javascript', src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js')    
+        script(type='text/javascript', src='/assets/js/lib/resources/bootstrap-datepicker.min.js') 
+        //script(type='text/javascript', src='/assets/js/lib/ajaxService.js')
+        script(type='text/javascript', src='/assets/js/lib/resources/sweetalert.min.js')
+        script(type='text/javascript', src='/assets/js/lib/callbackHelper.js')
+        //script(type='text/javascript', src='/assets/js/lib/resources/knockout.js')
+        //script(type='text/javascript', src='/assets/js/lib/resources/knockout-mapping.js')        
+        //script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/knockout-validation/2.0.3/knockout.validation.min.js')
+        script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js')
+        script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-route.min.js')
+        script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-resource.min.js')
+        script(src='//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js')
+        script(type='text/javascript', src='/assets/js/angular/ang-properties/ang-properties.js')
+        
+        
+
+        
+        
+        script
+            console.log('script from layout.jade') 

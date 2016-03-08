@@ -1,0 +1,22 @@
+select.form-control(data-bind="options: provincias,\
+  optionsText:'name',\
+    optionsValue: 'name',  \
+    value: selectedProvincia,\
+    optionsCaption: 'Please Select...'")
+| 
+br
+|   
+select.form-control(data-bind="options: cantones,\
+  optionsText:'name',\
+    optionsValue: 'name',  \
+    value: selectedCanton")
+| 
+br
+|   
+select.form-control(data-bind="options: distritos,\
+  optionsText:'name',\
+    optionsValue: 'name',  \
+    value: selectedDistrito")
+| 
+br
+|   

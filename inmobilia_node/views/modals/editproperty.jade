@@ -1,0 +1,163 @@
+//div(ng-controller='ModalDemoCtrl')
+script(type='text/ng-template', id='myModalContent.html')
+    #editProperty.modal.fade
+        .modal-dialog
+            .modal-content
+              .modal-header
+                button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
+                |                 
+                .portlet-title.no-border
+                  .caption
+                      i.icon-reorder
+                      | Edit Property
+              |             
+              .modal-body
+                .container-fluid
+                    .row
+                        .form-group
+                          label(for='usr') Property Name:
+                          |       
+                          input#usr.form-control(type='text', data-bind="value: editName")
+                    .row
+                         .form-group
+                              label(for='sel1') Property Type:
+                              |   
+                              select.form-control(data-bind="options: propertyTypes,\
+                                    value: editPropertyType,\
+                                    optionsCaption: 'Please Select...'")
+                   
+                    .row
+                         .form-group
+                              label(for='sel1') Operation Type:
+                              |   
+                              select.form-control(data-bind="options: operationTypes,\
+                                    value: editOperationType,\
+                                    optionsCaption: 'Please Select...'")
+                    .row
+                          .form-group
+                              label(for='comment') Tags:
+                              |   
+                              .form-inline
+                                  div(data-bind='foreach: tags')
+                                    label.radio
+                                        input(type='checkbox', data-bind='attr: {value: $data}, checked: $root.editTags')
+                                        |     
+                                        span(data-bind='text: $data')
+                                    | 
+                    .row
+                        .form-group
+                          label(for='usr') Contact Name:
+                          |       
+                          input#usr.form-control(type='text', data-bind="value: editContact")
+                          
+                     .row
+                        .form-group
+                          label(for='usr') Contact Phone Number:
+                          |       
+                          input#usr.form-control(type='text', data-bind="value: editContactPhoneNumber")            
+                                                       
+                    .row
+                        .form-group
+                          label(for='usr') Description:
+                          |       
+                          input#usr.form-control(type='text', data-bind="value: editDescription")
+                    .row
+                        .form-group
+                          label(for='usr') Address:
+                          |       
+                          input#usr.form-control(type='text', , data-bind="value: editLocation")
+                          |   
+                          br
+                          | 
+                          include ../helpers/locations
+                    
+                    .row
+                        .form-group
+                          label(for='usr') Map Location:
+                          |                                   
+                          .map(data-bind='editPropertyGoogleMap:{ locations: locations, centerLat: 41.48, centerLon: -81.67 }')  
+                          
+                    .row
+                        .form-group
+                            label.col-sm-1 Price
+                            | 
+                            .col-sm-4
+                                select.form-control(data-bind="options: currencies,\
+                                  value: editCurrencyPrice,\
+                                  optionsCaption: 'Please Select...'")
+                                  | 
+                            .col-sm-4
+                                input.form-control(data-bind='value: editPrice')
+                                
+                            
+    
+                    .row
+                        .form-group
+                          label(for='usr') Bedrooms:
+                          |       
+                          input#usr.form-control(type='text', , data-bind="value: editBedrooms")  
+                    .row
+                        .form-group
+                          label(for='usr') Bathrooms:
+                          |       
+                          input#usr.form-control(type='text', , data-bind="value: editBathrooms")  
+                     .row
+                        .form-group
+                          label(for='usr') Parking Spots:
+                          |       
+                          input#usr.form-control(type='text', , data-bind="value: editParkingSpots")  
+                     .row
+                        .form-group
+                          label(for='usr') Lot Area:
+                          |       
+                          input#usr.form-control(type='text', , data-bind="value: editLotArea")       
+                     .row
+                        .form-group
+                          label(for='usr') Construction Area:
+                          |       
+                          input#usr.form-control(type='text', , data-bind="value: editConstructionArea")                    
+                     
+                      .row
+                          .form-group
+                              label(for='comment') Services:
+                              |   
+                              .form-inline
+                                  div(data-bind='foreach: services')
+                                    label.radio
+                                        input(type='checkbox', data-bind='attr: {value: name}, checked: $root.editServices')
+                                        |     
+                                        span(data-bind='text: name')
+                                    | 
+        
+                      
+                      .row
+                         .form-group
+                              label(for='comment') Comment:
+                              |   
+                              textarea#comment.form-control(rows='5', data-bind="value: editComment")
+                      .row
+                         .form-group
+                              label(for='comment') Publishing Dates:
+                              |   
+                              #datepicker.input-daterange.input-group
+                                  input.input-sm.form-control(type='text', name='start', data-bind='datepicker: editStartDate, value: editStartDate')
+                                  |     
+                                  span.input-group-addon to
+                                  |     
+                                  input.input-sm.form-control(type='text', name='end', data-bind='datepicker: editEndDate, value: editEndDate')
+                          
+                      .row                             
+                         .form-group
+                              label(for='comment') Images   :
+                                  |   
+                                  form#uploadForm(data-bind="editDropzone: { url: '/properties/upload'}", enctype='multipart/form-data', name='image')
+                            
+    
+                              
+                              
+                              
+              |             
+              .modal-footer
+                button.btn.btn-default(type='button', data-dismiss='modal') Close
+                |                 
+                button.btn.btn-primary(type='button', data-bind='click: $root.editProperty.bind($data)') Save changes

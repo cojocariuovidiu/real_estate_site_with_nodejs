@@ -1,0 +1,160 @@
+#newProperty.modal.fade
+    .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
+            |                 
+            .portlet-title.no-border
+              .caption
+                  i.icon-reorder
+                  | Add New Property
+          |             
+          .modal-body
+            .container-fluid
+                .row
+                    .form-group
+                      label(for='usr') Property Name:
+                      |       
+                      input#usr.form-control(type='text', data-bind="value: newName")
+                .row
+                     .form-group
+                          label(for='sel1') Property Type:
+                          |   
+                          select.form-control(data-bind="options: propertyTypes,\
+                                value: newPropertyType,\
+                                optionsCaption: 'Please Select...'")               
+                .row
+                     .form-group
+                          label(for='sel1') Operation Type:
+                          |   
+                          select.form-control(data-bind="options: operationTypes,\
+                                value: newOperationType,\
+                                optionsCaption: 'Please Select...'")
+                .row
+                      .form-group
+                          label(for='comment') Tags:
+                          |   
+                          .form-inline
+                              div(data-bind='foreach: tags')
+                                label.radio
+                                    input(type='checkbox', data-bind='attr: {value: $data}, checked: $root.newTags')
+                                    |     
+                                    span(data-bind='text: $data')
+                                | 
+                .row
+                    .form-group
+                      label(for='usr') Contact Name:
+                      |       
+                      input#usr.form-control(type='text', data-bind="value: newContact")
+                      
+                 .row
+                    .form-group
+                      label(for='usr') Contact Phone Number:
+                      |       
+                      input#usr.form-control(type='text', data-bind="value: newContactPhoneNumber")            
+                                                   
+                .row
+                    .form-group
+                      label(for='usr') Description:
+                      |       
+                      input#usr.form-control(type='text', data-bind="value: newDescription")
+                .row
+                    .form-group
+                      label(for='usr') Address:
+                      |       
+                      input#usr.form-control(type='text', , data-bind="value: newLocation")
+                      |   
+                      br
+                      | 
+                      include ../helpers/locations
+                
+                .row
+                    .form-group
+                      label(for='usr') Map Location:
+                      |                                   
+                      .map(data-bind='newPropertyGoogleMap:{ locations: locations, centerLat: 41.48, centerLon: -81.67 }')  
+                      
+                .row
+                    .form-group
+                        label.col-sm-1 Price
+                        | 
+                        .col-sm-4
+                            select.form-control(data-bind="options: currencies,\
+                              value: newCurrencyPrice,\
+                              optionsCaption: 'Please Select...'")
+                              | 
+                        .col-sm-4
+                            input.form-control(data-bind='value: newPrice')
+                            
+                        
+
+                .row
+                    .form-group
+                      label(for='usr') Bedrooms:
+                      |       
+                      input#usr.form-control(type='text', , data-bind="value: newBedrooms")  
+                .row
+                    .form-group
+                      label(for='usr') Bathrooms:
+                      |       
+                      input#usr.form-control(type='text', , data-bind="value: newBathrooms")  
+                 .row
+                    .form-group
+                      label(for='usr') Parking Spots:
+                      |       
+                      input#usr.form-control(type='text', , data-bind="value: newParkingSpots")  
+                 .row
+                    .form-group
+                      label(for='usr') Lot Area:
+                      |       
+                      input#usr.form-control(type='text', , data-bind="value: newLotArea")       
+                 .row
+                    .form-group
+                      label(for='usr') Construction Area:
+                      |       
+                      input#usr.form-control(type='text', , data-bind="value: newConstructionArea")                    
+                 
+                  .row
+                      .form-group
+                          label(for='comment') Services:
+                          |   
+                          .form-inline
+                              div(data-bind='foreach: services')
+                                label.radio
+                                    input(type='checkbox', data-bind='attr: {value: name}, checked: $root.newServices')
+                                    |     
+                                    span(data-bind='text: name')
+                                | 
+    
+                  
+                  .row
+                     .form-group
+                          label(for='comment') Comment:
+                          |   
+                          textarea#comment.form-control(rows='5', data-bind="value: newComment")
+                  .row
+                     .form-group
+                          label(for='comment') Publishing Dates:
+                          |   
+                          #datepicker.input-daterange.input-group
+                              input.input-sm.form-control(type='text', name='start', data-bind='datepicker: newStartDate, value: newStartDate')
+                              |     
+                              span.input-group-addon to
+                              |     
+                              input.input-sm.form-control(type='text', name='end', data-bind='datepicker: newEndDate, value: newEndDate')
+                      
+                  .row                             
+                     .form-group
+                          label(for='comment') Images   :
+                              |   
+                              form#uploadForm(data-bind="newDropzone: { url: '/properties/upload'}", enctype='multipart/form-data', name='image')
+                        
+
+                          
+                          
+                          
+          |             
+          .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') Close
+            |                 
+            button.btn.btn-primary(type='button', data-bind='click: $root.insertNewProperty.bind($data)') Save changes
